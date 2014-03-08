@@ -21,5 +21,6 @@ func Test_Parse(t *testing.T) {
 
 	url = Parse(":@somewhere:6380/9")
 	assert.Equal(t, 9, url.Database)
+	assert.Equal(t, "redis://:@somewhere:6380", url.Url)
 	assert.Empty(t, url.Password)
 }

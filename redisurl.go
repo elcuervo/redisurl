@@ -11,6 +11,7 @@ type Url struct {
 	Host     string
 	Port     int
 	Database int
+	Url      string
 }
 
 func Parse(redisurl string) *Url {
@@ -49,10 +50,13 @@ func Parse(redisurl string) *Url {
 		password, _ = u.User.Password()
 	}
 
+	clean := redisurl[0 : len(redisurl)-len(u.Path)]
+
 	return &Url{
 		Host:     host,
 		Port:     port,
 		Database: db,
 		Password: password,
+		Url:      clean,
 	}
 }
