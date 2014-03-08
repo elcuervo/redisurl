@@ -7,7 +7,6 @@ import (
 )
 
 type Url struct {
-	User     string
 	Password string
 	Host     string
 	Port     int
@@ -15,7 +14,7 @@ type Url struct {
 }
 
 func Parse(redisurl string) *Url {
-	var username, password, host string
+	var password, host string
 	var db, port int
 
 	u, err := url.Parse(redisurl)
@@ -43,7 +42,6 @@ func Parse(redisurl string) *Url {
 	port, _ = strconv.Atoi(parts[1])
 
 	if u.User != nil {
-		username = u.User.Username()
 		password, _ = u.User.Password()
 	}
 
@@ -51,7 +49,6 @@ func Parse(redisurl string) *Url {
 		Host:     host,
 		Port:     port,
 		Database: db,
-		User:     username,
 		Password: password,
 	}
 }

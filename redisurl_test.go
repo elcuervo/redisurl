@@ -17,11 +17,9 @@ func Test_Parse(t *testing.T) {
 	assert.Equal(t, 6380, url.Port)
 	assert.Equal(t, 3, url.Database)
 	assert.Equal(t, "somewhere", url.Host)
-	assert.Equal(t, "username", url.User)
 	assert.Equal(t, "passwd", url.Password)
 
-	url = Parse("redis://username:@somewhere:6380/9")
+	url = Parse("redis://:@somewhere:6380/9")
 	assert.Equal(t, 9, url.Database)
-	assert.Equal(t, "username", url.User)
 	assert.Empty(t, url.Password)
 }
