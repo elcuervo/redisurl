@@ -17,6 +17,10 @@ func Parse(redisurl string) *Url {
 	var password, host string
 	var db, port int
 
+	if !strings.HasPrefix(redisurl, "redis://") {
+		redisurl = "redis://" + redisurl
+	}
+
 	u, err := url.Parse(redisurl)
 	if err != nil {
 		panic(err)
@@ -30,11 +34,11 @@ func Parse(redisurl string) *Url {
 	}
 
 	if len(u.Path) > 1 {
-                path := u.Path[1:]
+		path := u.Path[1:]
 		db, err = strconv.Atoi(path)
-                if err != nil {
-                        panic("Invalid db" + path)
-                }
+		if err != nil {
+			panic("Invalid db " + path)
+		}
 	} else {
 		db = 0
 	}

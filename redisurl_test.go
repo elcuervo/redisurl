@@ -19,7 +19,7 @@ func Test_Parse(t *testing.T) {
 	assert.Equal(t, "somewhere", url.Host)
 	assert.Equal(t, "passwd", url.Password)
 
-	url = Parse("redis://:@somewhere:6380/9")
+	url = Parse(":@somewhere:6380/9")
 	assert.Equal(t, 9, url.Database)
 	assert.Empty(t, url.Password)
 }
