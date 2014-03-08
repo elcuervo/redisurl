@@ -13,3 +13,4 @@ url = redisurl.Parse("redis://username:s3cr37@somewhere:6380/9")
 // url.Password
 // s3cr37
 ```
+You can also use `.Url` to get a Redis compatible string.
