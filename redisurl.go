@@ -50,7 +50,7 @@ func Parse(redisurl string) *Url {
 		password, _ = u.User.Password()
 	}
 
-	clean := redisurl[0 : len(redisurl)-len(u.Path)]
+        clean := redisurl[0 : len(redisurl)-len(u.Path)][8:]
 
 	return &Url{
 		Host:     host,
